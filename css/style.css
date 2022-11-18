@@ -1,0 +1,12 @@
+/* body{
+    background: url('https://cdn.hovia.com/app/uploads/Neutral-Bulldog-and-Sausage-Dog-Pattern-Pet-Wallpaper-Mural-Plain.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+
+.heading-pet{
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.726);
+    padding: 15px; 
+    margin-top: 30px;
+}

@@ -17,7 +17,7 @@ $cardbody = '';
 
 if (mysqli_num_rows($pets_result)  > 0) {
     while ($row = mysqli_fetch_array($pets_result, MYSQLI_ASSOC)) {
-        $cardbody .= "<div class = 'col mt-5'><div class='card' style='width: 22rem;'>
+        $cardbody .= "<div class = 'col d-flex justify-content-center mt-5'><div class='card' style='width: 22rem;'>
         <img src='pictures/" . $row['picture'] . "' class='card-img-top' style='height: 300px; object-fit: cover;' alt='" . $row['name'] . "'>
         <div class='card-body'>
           <h5 class='card-title mb-3'>" . $row['name'] . "</h5>
@@ -55,6 +55,7 @@ mysqli_close($connect);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome <?= $fname ?></title>
     <?php require_once 'components/boot.php' ?>
+    <link rel="stylesheet" href="./css/style.css">
     <style type="text/css">
         .manageProduct {
             margin: auto;
@@ -63,10 +64,10 @@ mysqli_close($connect);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 100px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px;">
+                <img src="pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px; margin-right: 10px;">
                 Hi, <?= $fname ?>
             </a>
 
@@ -79,11 +80,12 @@ mysqli_close($connect);
         </div>
     </nav>
 
-    <div class="manageProduct w-75 mt-3">
+    <div class="manageProduct w-75">
 
-        <p class='h1 text-center'>Pets</p>
+        <h1 class='text-center heading-pet'>Pets</h1>
+
         <div class="container text-center mt-5 mb-5">
-            <div class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
                 <?= $cardbody; ?>
             </div>
         </div>

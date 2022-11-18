@@ -30,6 +30,14 @@ if (mysqli_num_rows($result) == 1) {
 } else {
     header("location: error.php");
 }
+
+$query = "SELECT * FROM users WHERE id={$_SESSION['user']}";
+$result = mysqli_query($connect, $query);
+$row = mysqli_fetch_assoc($result);
+
+$fname = $row['first_name'];
+$pic = $row['picture'];
+
 mysqli_close($connect);
 
 ?>
@@ -41,37 +49,36 @@ mysqli_close($connect);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Details</title>
+    <title>Welcome <?= $fname ?></title>
     <?php require_once '../components/boot.php' ?>
+    <link rel="stylesheet" href="../css/style.css">
     <style type="text/css">
         .manageProduct {
             margin: auto;
-        }
-
-        .img-thumbnail {
-            width: 70px !important;
-            height: 70px !important;
-        }
-
-        td {
-            text-align: left;
-            vertical-align: middle;
-
-        }
-
-        tr {
-            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 100px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px; margin-right: 10px;">
+                Hi, <?= $fname ?>
+            </a>
+
+            <div class="navbar-nav">
+                <a class=" btn btn-primary ms-1" href="../home.php?id=<?= $_SESSION['user'] ?>">Home</a>
+                <a class=" btn btn-secondary ms-1" href="../update.php?id=<?= $_SESSION['user'] ?>">Profile Settings</a>
+                <a class="btn btn-outline-danger ms-1" href="../logout.php?logout">Log Out</a>
+            </div>
+        </div>
+    </nav>
+
 
     <div class="manageProduct w-75 mt-3">
-        <div class='mb-3'>
-            <a href="../home.php"><button class='btn btn-danger' type="button">Back</button></a>
-        </div>
+
+        <p class='h1 text-center heading-pet'>Details</p>
 
         <div class="container py-5 h100">
             <div class="row">

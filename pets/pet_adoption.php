@@ -19,7 +19,7 @@ $body = ''; //this variable will hold the body for the table
 
 if (mysqli_num_rows($pet_result)  > 0) {
     while ($row = mysqli_fetch_array($pet_result, MYSQLI_ASSOC)) {
-        $body .= "<div class = 'col mt-5'><div class='card' style='width: 22rem;'>
+        $body .= "<div class = 'col mt-5 d-flex justify-content-center'><div class='card' style='width: 22rem;'>
         <img src='../pictures/" . $row['picture'] . "' class='card-img-top' style='height: 300px; object-fit: cover;' alt='" . $row['name'] . "'>
         <div class='card-body'>
           <h5 class='card-title mb-3'>" . $row['name'] . "</h5>
@@ -29,7 +29,7 @@ if (mysqli_num_rows($pet_result)  > 0) {
       </div></div>";
     };
 } else {
-    $body = "No pets adoptived";
+    $body = "No pets adopted";
 }
 
 
@@ -51,6 +51,7 @@ mysqli_close($connect);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP CRUD</title>
     <?php require_once '../components/boot.php' ?>
+    <link rel="stylesheet" href="../css/style.css">
     <style type="text/css">
         .manageProduct {
             margin: auto;
@@ -69,7 +70,7 @@ mysqli_close($connect);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 100px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="../pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px;">
@@ -85,7 +86,7 @@ mysqli_close($connect);
     </nav>
 
     <div class="manageProduct w-75 mt-3">
-        <p class='h1 text-center'>Your Pets</p>
+        <p class='h1 text-center heading-pet'>Your Pets</p>
         <div class="container text-center mt-5 mb-5">
             <div class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
                 <?= $body; ?>
