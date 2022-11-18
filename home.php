@@ -28,6 +28,7 @@ if (mysqli_num_rows($pets_result)  > 0) {
           <p class='card-text'>Breed: " . $row['breed'] . "</p>
           <hr>
           <a href='./pets/details.php?petId=" . $row['id'] . "' class='btn btn-primary'>Details</a>
+          <a href='./pets/details.php?petId=" . $row['id'] . "' class='btn btn-primary'>Take me home</a>
         </div>
       </div></div>";
     };
