@@ -8,7 +8,13 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     exit;
 }
 
-$query = "SELECT * FROM users WHERE id={$_SESSION['user']}";
+if (isset($_SESSION['adm'])){
+    $query = "SELECT * FROM users WHERE id={$_SESSION['adm']}";
+}
+else{
+    $query = "SELECT * FROM users WHERE id={$_SESSION['user']}";
+}
+
 $result = mysqli_query($connect, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -85,6 +91,7 @@ mysqli_close($connect);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
     <?php require_once 'components/boot.php' ?>
+    <link rel="stylesheet" href="./css/style.css">
     <style type="text/css">
         fieldset {
             margin: auto;
@@ -100,7 +107,7 @@ mysqli_close($connect);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light navbar-dark bg-dark" style="height: 100px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px;">
@@ -108,8 +115,6 @@ mysqli_close($connect);
             </a>
 
             <div class="navbar-nav">
-                <a class=" btn btn-primary ms-1" href="./pets/pet_adoption.php?id=<?= $_SESSION['user'] ?>">Your pets</a>
-                <a class=" btn btn-warning ms-1" href="./pets/senior.php">Show Senior</a>
                 <a class="btn btn-outline-danger ms-1" href="logout.php?logout">Log Out</a>
             </div>
         </div>

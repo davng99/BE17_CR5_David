@@ -22,8 +22,9 @@ if ($result->num_rows > 0) {
             <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
             <td>" . $row['address'] . "</td>
             <td>" . $row['email'] . "</td>
-            <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
+            <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-success btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a>
+            <a href='./pets/pet_adoption.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Adoption</button></a>
             </tr>";
     }
 } else {

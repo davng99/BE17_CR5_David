@@ -53,25 +53,16 @@ mysqli_close($connect);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP CRUD</title>
     <?php require_once '../components/boot.php' ?>
+    <link rel="stylesheet" href="../css/style.css">
     <style type="text/css">
         .manageProduct {
             margin: auto;
-        }
-
-        .img-thumbnail {
-            width: 70px !important;
-            height: 70px !important;
-        }
-
-        td {
-            text-align: left;
-            vertical-align: middle;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 100px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="../pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px;">
@@ -92,7 +83,7 @@ mysqli_close($connect);
             <a href="create.php"><button class='btn btn-primary' type="button">Add pet</button></a>
             <a href="../dashboard.php"><button class='btn btn-success' type="button">Dashboard</button></a>
         </div> -->
-        <p class='h1 text-center'>Pets</p>
+        <p class='h1 text-center heading-pet'>Pets</p>
 
         <div class="container text-center mt-5 mb-5">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">

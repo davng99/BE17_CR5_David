@@ -27,7 +27,7 @@ if (mysqli_num_rows($pets_result)  > 0) {
           <p class='card-text'>Vaccinated: " . $row['vaccinated'] . "</p>
           <p class='card-text'>Breed: " . $row['breed'] . "</p>
           <hr>
-          <a href='./pets/details.php?petId=". $row['id']. "' class='btn btn-primary'>Details</a>
+          <a href='./details.php?petId=". $row['id']. "' class='btn btn-primary'>Details</a>
         </div>
       </div></div>";
     };
@@ -63,7 +63,7 @@ mysqli_close($connect);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 100px;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="../pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px;">
