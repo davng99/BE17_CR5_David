@@ -28,7 +28,7 @@ if (mysqli_num_rows($pets_result)  > 0) {
           <p class='card-text'>Breed: " . $row['breed'] . "</p>
           <hr>
           <a href='./pets/details.php?petId=" . $row['id'] . "' class='btn btn-primary'>Details</a>
-          <a href='./pets/details.php?petId=" . $row['id'] . "' class='btn btn-primary'>Take me home</a>
+          <a href='./pets/actions/a_adopt_pet.php?petId=" . $row['id'] . "' class='btn btn-success'>Take me home</a>
         </div>
       </div></div>";
     };
@@ -71,6 +71,7 @@ mysqli_close($connect);
             </a>
 
             <div class="navbar-nav">
+                <a class=" btn btn-primary ms-1" href="./pets/pet_adoption.php?id=<?= $_SESSION['user'] ?>">Your pets</a>
                 <a class=" btn btn-warning ms-1" href="./pets/senior.php">Show Senior</a>
                 <a class=" btn btn-secondary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Profile Settings</a>
                 <a class="btn btn-outline-danger ms-1" href="logout.php?logout">Log Out</a>

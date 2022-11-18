@@ -8,6 +8,14 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
     exit;
 }
 
+$query = "SELECT * FROM users WHERE id={$_SESSION['user']}";
+$result = mysqli_query($connect, $query);
+$row = mysqli_fetch_assoc($result);
+
+$fname = $row['first_name'];
+$pic = $row['picture'];
+
+
 $backBtn = '';
 //if it is a user it will create a back button to home.php
 if (isset($_SESSION["user"])) {
@@ -92,6 +100,21 @@ mysqli_close($connect);
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px;">
+                Hi, <?= $fname ?>
+            </a>
+
+            <div class="navbar-nav">
+                <a class=" btn btn-primary ms-1" href="./pets/pet_adoption.php?id=<?= $_SESSION['user'] ?>">Your pets</a>
+                <a class=" btn btn-warning ms-1" href="./pets/senior.php">Show Senior</a>
+                <a class="btn btn-outline-danger ms-1" href="logout.php?logout">Log Out</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="<?php echo $class; ?>" role="alert">
             <p><?php echo ($message) ?? ''; ?></p>
