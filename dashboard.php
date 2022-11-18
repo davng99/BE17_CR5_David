@@ -73,7 +73,7 @@ mysqli_close($connect);
                     <h5 class="my-4">Administrator</h5>
                     <div class="d-flex justify-content-center mb-2">
                         <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
-                        <a class="btn btn-success ms-1" href="products/index.php">Products</a>
+                        <a class="btn btn-success ms-1" href="pets/index.php">Pets</a>
 
                     </div>
                 </div>
