@@ -18,7 +18,7 @@ $cardbody = '';
 if (mysqli_num_rows($pets_result)  > 0) {
     while ($row = mysqli_fetch_array($pets_result, MYSQLI_ASSOC)) {
         $cardbody .= "<div class = 'col mt-5'><div class='card' style='width: 22rem;'>
-        <img src='pictures/" . $row['picture'] . "' class='card-img-top' style='height: 100%; object-fit: cover;' alt='" . $row['name'] . "'>
+        <img src='pictures/" . $row['picture'] . "' class='card-img-top' style='height: 300px; object-fit: cover;' alt='" . $row['name'] . "'>
         <div class='card-body'>
           <h5 class='card-title mb-3'>" . $row['name'] . "</h5>
           <hr>
@@ -27,12 +27,11 @@ if (mysqli_num_rows($pets_result)  > 0) {
           <p class='card-text'>Vaccinated: " . $row['vaccinated'] . "</p>
           <p class='card-text'>Breed: " . $row['breed'] . "</p>
           <hr>
-          <a href='./pets/details.php?petId=". $row['id']. "' class='btn btn-primary'>Details</a>
+          <a href='./pets/details.php?petId=" . $row['id'] . "' class='btn btn-primary'>Details</a>
         </div>
       </div></div>";
     };
-}
-else{
+} else {
     $cardbody = "No pets available";
 }
 
@@ -71,27 +70,19 @@ mysqli_close($connect);
             </a>
 
             <div class="navbar-nav">
-                <a class=" btn btn-primary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Update your profile</a>
-                <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
+                <a class=" btn btn-warning ms-1" href="./pets/senior.php">Show Senior</a>
+                <a class=" btn btn-secondary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Profile Settings</a>
+                <a class="btn btn-outline-danger ms-1" href="logout.php?logout">Log Out</a>
             </div>
-
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class=" btn btn-primary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Update your profile</a>
-                    <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
-                </div>
-            </div> -->
         </div>
     </nav>
 
     <div class="manageProduct w-75 mt-3">
 
+        <p class='h1 text-center'>Pets</p>
         <div class="container text-center mt-5 mb-5">
-            <div class = "d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
-            <?= $cardbody; ?>
+            <div class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
+                <?= $cardbody; ?>
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@ if ($_POST) {
 
     $picture = file_upload($_FILES['picture'], "pet"); //file_upload() called  
     if ($picture->error === 0) {
-        ($_POST["picture"] == "pet.png") ?: unlink("../../pictures/$_POST[picture]");
+        ($_POST["picture"] == "pet.jp") ?: unlink("../../pictures/$_POST[picture]");
         $sql = "UPDATE pets SET name = '$name', location = '$location', description = '$description', size = '$size', age = $age, vaccinated = '$vaccinated', breed = '$breed', picture = '$picture->fileName' WHERE id = {$id}";
     } else {
         $sql = "UPDATE pets SET name = '$name', location = '$location', description = '$description', size = '$size', age = $age, vaccinated = '$vaccinated', breed = '$breed' WHERE id = {$id}";

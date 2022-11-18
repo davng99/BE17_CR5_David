@@ -4,11 +4,11 @@ session_start();
 require_once '../components/db_connect.php';
 
 if (isset($_SESSION['adm'])) {
-    header('Location: dashboard.php');
+    header('Location: ../dashboard.php');
     exit;
 }
 if (!isset($_SESSION['user'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -66,6 +66,8 @@ mysqli_close($connect);
 </head>
 
 <body>
+    
+
     <div class="manageProduct w-75 mt-3">
         <div class='mb-3'>
             <a href="../home.php"><button class='btn btn-danger' type="button">Back</button></a>

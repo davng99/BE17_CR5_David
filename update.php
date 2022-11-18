@@ -98,7 +98,7 @@ mysqli_close($connect);
             <p><?php echo ($uploadError) ?? ''; ?></p>
         </div>
 
-        <h2>Update</h2>
+        <h2>Profile Settings</h2>
         <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $data['picture'] ?>' alt="<?php echo $f_name ?>">
         <form method="post" enctype="multipart/form-data">
             <table class="table">

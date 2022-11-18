@@ -13,7 +13,7 @@ if (isset($_SESSION['user'])) {
 if ($_POST) {
     $id = $_POST['id'];
     $picture = $_POST['picture'];
-    ($picture == "product.png") ?: unlink("../../pictures/$picture");
+    ($picture == "pet.jpg") ?: unlink("../../pictures/$picture");
 
     $sql = "DELETE FROM pets WHERE id = {$id}";
     if (mysqli_query($connect, $sql) === TRUE) {
