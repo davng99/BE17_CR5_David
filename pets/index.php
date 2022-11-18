@@ -16,14 +16,16 @@ $result = mysqli_query($connect, $sql);
 $cardbody = ''; //this variable will hold the body for the table
 if (mysqli_num_rows($result)  > 0) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $cardbody .= "<div class = 'col d-flex justify-content-center'><div class='card' style='width: 18rem;'>
+        $cardbody .= "<div class = 'col d-flex justify-content-center mt-5'><div class='card' style='width: 22rem;'>
         <img src='../pictures/" . $row['picture'] . "' class='card-img-top' style='height: 100%; object-fit: cover;' alt='" . $row['name'] . "'>
         <div class='card-body'>
-          <h5 class='card-title'>" . $row['name'] . "</h5>
+          <h5 class='card-title mb-3'>" . $row['name'] . "</h5>
+          <hr>
           <p class='card-text'>Size: " . $row['size'] . "</p>
           <p class='card-text'>Age: " . $row['age'] . "</p>
           <p class='card-text'>Vaccinated: " . $row['vaccinated'] . "</p>
           <p class='card-text'>Breed: " . $row['breed'] . "</p>
+          <hr>
           <a href='update.php?id=". $row['id']. "' class='btn btn-success'>Edit</a>
           <a href='delete.php?id=". $row['id']. "' class='btn btn-danger'>Delete</a>
         </div>
@@ -70,7 +72,7 @@ mysqli_close($connect);
         </div>
         <p class='h2'>Pets</p>
        
-        <div class="container text-center mt-5">
+        <div class="container text-center mt-5 mb-5">
             <div class = "row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
             <?= $cardbody; ?>
             </div>

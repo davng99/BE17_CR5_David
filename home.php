@@ -11,39 +11,39 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
+$pets_query = "SELECT * FROM pets";
+$pets_result = mysqli_query($connect, $pets_query);
+$cardbody = '';
+
+if (mysqli_num_rows($pets_result)  > 0) {
+    while ($row = mysqli_fetch_array($pets_result, MYSQLI_ASSOC)) {
+        $cardbody .= "<div class = 'col mt-5'><div class='card' style='width: 22rem;'>
+        <img src='pictures/" . $row['picture'] . "' class='card-img-top' style='height: 100%; object-fit: cover;' alt='" . $row['name'] . "'>
+        <div class='card-body'>
+          <h5 class='card-title mb-3'>" . $row['name'] . "</h5>
+          <hr>
+          <p class='card-text'>Size: " . $row['size'] . "</p>
+          <p class='card-text'>Age: " . $row['age'] . "</p>
+          <p class='card-text'>Vaccinated: " . $row['vaccinated'] . "</p>
+          <p class='card-text'>Breed: " . $row['breed'] . "</p>
+          <hr>
+          <a href='./pets/details.php?petId=". $row['id']. "' class='btn btn-primary'>Details</a>
+        </div>
+      </div></div>";
+    };
+}
+else{
+    $cardbody = "No pets available";
+}
+
+
+
 $query = "SELECT * FROM users WHERE id={$_SESSION['user']}";
 $result = mysqli_query($connect, $query);
 $row = mysqli_fetch_assoc($result);
 
 $fname = $row['first_name'];
-$lname = $row['last_name'];
-$email = $row['email'];
 $pic = $row['picture'];
-$pnumber = $row['phone_number'];
-$address = $row['address'];
-$status = $row['status'];
-
-// $sql = "SELECT * FROM `products` 
-// left JOIN car_rental on products.fk_rentalId = car_rental.rentalId
-// JOIN booking on booking.fk_productsID = products.id
-// JOIN users on booking.fk_userId = users.id
-// WHERE users.id = $_SESSION[user]";
-
-// $result = mysqli_query($connect, $sql);
-// $tbody = ''; //this variable will hold the body for the table
-// if (mysqli_num_rows($result)  > 0) {
-//     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-//         $tbody .= "<tr>
-//             <td>" . $row['bookingId'] . "</td>
-//             <td>" . $row['name'] . "</td>
-//             <td>" . $row['price'] . "</td>
-//             <td>" . $row['rental_name'] . "</td>
-//             <td><a href='./products/actions/a_delete_rent.php?bookId=" . $row['bookingId'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
-//             </tr>";
-//     };
-// } else {
-//     $tbody =  "<tr><td colspan='5'><center>No Data Available </center></td></tr>";
-// }
 
 mysqli_close($connect);
 ?>
@@ -55,100 +55,45 @@ mysqli_close($connect);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome <?= $fname ?></title>
     <?php require_once 'components/boot.php' ?>
+    <style type="text/css">
+        .manageProduct {
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container py-5 h100">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <img src="pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-4">Hi, <?= $fname ?></h5>
-                        <div class="d-flex justify-content-center mb-2">
-                            <a class=" btn btn-primary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Update your profile</a>
-                            <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
-                        </div>
-                    </div>
-                </div>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="pictures/<?= $pic ?>" alt=" avatar" class="rounded-circle img-fluid" style="width: 50px;">
+                Hi, <?= $fname ?>
+            </a>
+
+            <div class="navbar-nav">
+                <a class=" btn btn-primary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Update your profile</a>
+                <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
             </div>
-            <div class="col-lg-8">
-                <div class="card card-body ">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Name</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $fname ?></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Lastname</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $lname ?></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Phone number</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $pnumber ?></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Address</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $address ?></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Email</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $email ?></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Status</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?= $status ?></p>
-                        </div>
-                    </div>
+
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class=" btn btn-primary ms-1" href="update.php?id=<?= $_SESSION['user'] ?>">Update your profile</a>
+                    <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
                 </div>
+            </div> -->
+        </div>
+    </nav>
+
+    <div class="manageProduct w-75 mt-3">
+
+        <div class="container text-center mt-5 mb-5">
+            <div class = "d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
+            <?= $cardbody; ?>
             </div>
         </div>
-
-        <!-- <div class="manageProduct w-75 mt-3">
-
-            <p class='h2'>Bookings</p>
-            <table class='table table-striped'>
-                <thead class='table-success'>
-                    <tr>
-                        <th>Booking ID</th>
-                        <th>Name</th>
-                        <th>price</th>
-                        <th>Car Rental</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                 
-                </tbody>
-            </table>
-        </div> -->
     </div>
 
 </body>
