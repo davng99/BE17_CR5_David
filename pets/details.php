@@ -85,7 +85,7 @@ mysqli_close($connect);
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="text-center">
-                            <img src="../pictures/<?= $picture ?>" alt=" avatar" class="img-fluid" style="width: 100%;">
+                            <img src="../pictures/<?= $picture ?>" alt=" avatar" class="img-fluid" style="height: 340px;">
                             <h1><?= $name ?></h1>
                         </div>
                     </div>
