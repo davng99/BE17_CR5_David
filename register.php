@@ -18,31 +18,22 @@ $error = false;
 $fname = $lname = $pnumber = $email = $address = $pass = $picture = "";
 $fnameError = $lnameError = $pnumberError = $emailError = $addressError = $passError = $picError = "";
 
+function cleanString($param){
+    $val = trim($param);
+    $val = strip_tags($val);
+    $val = htmlspecialchars($val);
+
+    return $val;
+}
 
 if (isset($_POST['btn-signup'])) {
-    $fname = trim($_POST['fname']);
-    $fname = strip_tags($fname);
-    $fname = htmlspecialchars($fname);
 
-    $lname = trim($_POST['lname']);
-    $lname = strip_tags($lname);
-    $lname = htmlspecialchars($lname);
-
-    $pnumber = trim($_POST['pnumber']);
-    $pnumber = strip_tags($pnumber);
-    $pnumber = htmlspecialchars($pnumber);
-
-    $email = trim($_POST['email']);
-    $email = strip_tags($email);
-    $email = htmlspecialchars($email);
-
-    $address = trim($_POST['address']);
-    $address = strip_tags($address);
-    $address = htmlspecialchars($address);
-
-    $pass = trim($_POST['pass']);
-    $pass = strip_tags($pass);
-    $pass = htmlspecialchars($pass);
+    $fname = cleanString($_POST['fname']);
+    $lname = cleanString($_POST['lname']);
+    $pnumber = cleanString($_POST['pnumber']);
+    $email = cleanString($_POST['email']);
+    $address = cleanString($_POST['address']);
+    $pass = cleanString($_POST['pass']);
 
     $uploadError = "";
     $picture = file_upload($_FILES['picture']);
