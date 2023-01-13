@@ -40,13 +40,16 @@ if (isset($_POST['btn-login'])) {
 
     if (!$error) {
         $password = hash('sha256', $pass);
-        $sql = "SELECT * FROM USERS WHERE email= '$email' AND password = '$password'";
+        $sql = "SELECT * FROM users WHERE email= '$email'";
         $result = mysqli_query($connect, $sql);
         $row = mysqli_fetch_assoc($result);
 
+        // $result=$connect->query($sql);
+        // $row=$result->fetch_assoc();
+
         $count = mysqli_num_rows($result);
 
-        if ($count == 1) {
+        if ($count == 1 && $row['password'] == $password) {
             if ($row['status'] == "adm") {
                 $_SESSION['adm'] = $row['id'];
                 header("Location: dashboard.php");
