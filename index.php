@@ -43,10 +43,6 @@ if (isset($_POST['btn-login'])) {
         $sql = "SELECT * FROM users WHERE email= '$email'";
         $result = mysqli_query($connect, $sql);
         $row = mysqli_fetch_assoc($result);
-
-        // $result=$connect->query($sql);
-        // $row=$result->fetch_assoc();
-
         $count = mysqli_num_rows($result);
 
         if ($count == 1 && $row['password'] == $password) {
@@ -92,6 +88,13 @@ mysqli_close($connect);
                             }
                             ?>
                             <div class="row">
+                            <div class="col-md-12 mb-2 pb-2">
+                                    <div class="form-outline">
+                                        Login Testing <br>
+                                        Email: user@mail.com <br>
+                                        Password: 123456
+                                    </div>
+                                </div>
                                 <div class="col-md-12 mb-2 pb-2">
                                     <div class="form-outline">
                                         <input type="email" name="email" class="form-control form-control-lg" placeholder="Your Email" maxlength="40" value="<?php echo $email ?>" />
