@@ -90,8 +90,14 @@ mysqli_close($connect);
                             <div class="row">
                             <div class="col-md-12 mb-2 pb-2">
                                     <div class="form-outline">
-                                        Login Testing <br>
+                                        <b>Test User Login</b> <br>
                                         Email: user@mail.com <br>
+                                        Password: 123456
+                                    </div>
+                                    <br>
+                                    <div class="form-outline">
+                                        <b>Admin Login</b> <br>
+                                        Email: admin@mail.com <br>
                                         Password: 123456
                                     </div>
                                 </div>
