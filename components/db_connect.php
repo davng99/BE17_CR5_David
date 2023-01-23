@@ -1,14 +1,14 @@
 <?php 
 
-// $localhost = "127.0.0.1";
-// $username = "root";
-// $password = "";
-// $dbname = "be17_cr5_animal_adoption_david";
+$localhost = "127.0.0.1";
+$username = "root";
+$password = "";
+$dbname = "be17_cr5_animal_adoption_david";
 
-$localhost = "173.212.235.205";
-$username = "nguyencodefactor_cr5";
-$password = "EverybodyCode!";
-$dbname = "nguyencodefactor_cr5";
+// $localhost = "173.212.235.205";
+// $username = "nguyencodefactor_cr5";
+// $password = "EverybodyCode!";
+// $dbname = "nguyencodefactor_cr5";
 
 // create connection
 $connect = new mysqli($localhost, $username, $password, $dbname);
